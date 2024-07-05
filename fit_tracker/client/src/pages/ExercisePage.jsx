@@ -1,9 +1,7 @@
 const FoodsPage = () => {
   return (
     <div className="user-dashboard">
-      <div className="main-content">
-        <div className="content-container">Foods</div>
-      </div>
+      <div className="content-container">Exercise</div>
     </div>
   );
 };

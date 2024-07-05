@@ -1,11 +1,9 @@
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import SideBar from "./components/SideBar";
 import UserDashboard from "./pages/DashboardPage";
 import DiaryPage from "./pages/DiaryPage";
-import FoodsPage from "./pages/FoodsPage";
+import ExercisePage from "./pages/ExercisePage";
 import TrendsPage from "./pages/TrendsPage";
-import CalculatorPage from "./pages/CalculatorPage";
 import ProfilePage from "./pages/ProfilePage";
 import Layout from "./layouts/DashLayout";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -16,11 +14,11 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<UserDashboard />} />
         <Route path="diary" element={<DiaryPage />} />
-        <Route path="foods" element={<FoodsPage />} />
+        <Route path="exercise" element={<ExercisePage />} />
         <Route path="trends" element={<TrendsPage />} />
-        <Route path="calculator" element={<CalculatorPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        <Route path="settings" element={<ProfilePage />} />
       </Route>
+      <Route path="login" element={<LoginPage />} />
       <Route path="/*" element={<NotFoundPage />} />
     </Routes>
   );

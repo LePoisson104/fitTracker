@@ -1,3 +1,8 @@
+import UpdatePassword from "../components/modals/UpdatePassword";
+import UpdateEmail from "../components/modals/UpdateEmail";
+import UpdateName from "../components/modals/UpdateName";
+import Success from "../components/modals/Success";
+
 import { useState } from "react";
 
 const Profile = () => {
@@ -6,8 +11,11 @@ const Profile = () => {
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
+
+  const openModal = (type) => {};
+
   return (
-    <div className="user-dashboard">
+    <div className="user-profile">
       <div className="profile-detail-container">
         <h1>Account Settings</h1>
         <form className="account-info-container">
@@ -15,25 +23,45 @@ const Profile = () => {
           <div className="account-info">
             <label>Name:</label>
             <div className="input-container">
-              <input type="text" placeholder="Viet" />
+              <input type="text" placeholder="Viet" disabled />
+              <button
+                className="update-btn"
+                type="button"
+                onClick={() => openModal("name")}
+              >
+                UPDATE
+              </button>
             </div>
           </div>
           <div className="account-info">
             <label>Email:</label>
             <div className="input-container">
-              <input type="email" placeholder="vietpham2017@gmail.com" />
+              <input
+                type="email"
+                placeholder="vietpham2017@gmail.com"
+                disabled
+              />
+              <button
+                className="update-btn"
+                type="button"
+                onClick={() => openModal("email")}
+              >
+                UPDATE
+              </button>
             </div>
           </div>
           <div className="account-info">
             <label>Password:</label>
             <div className="input-container">
-              <input type="password" placeholder="*******" />
+              <input type="password" placeholder="*******" disabled />
+              <button
+                className="update-btn"
+                type="button"
+                onClick={() => openModal("password")}
+              >
+                UPDATE
+              </button>
             </div>
-          </div>
-          <div className="save-changes-container">
-            <button className="save-changes-btn" type="submit">
-              Save Changes
-            </button>
           </div>
         </form>
         <form className="profile-info-container">

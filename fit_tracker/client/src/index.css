@@ -30,15 +30,15 @@ body {
 /* LoginPage */
 
 .LoginPage {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .login-container {
-  height: 60vh;
+  min-height: 60vh;
   width: 450px;
   display: flex;
   flex-direction: column;
@@ -54,12 +54,12 @@ body {
   flex-direction: column;
   align-items: center;
   width: 80%;
-  height: 50vh;
+  min-height: 50vh;
 }
 
 .login-container .form-input {
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   margin-top: 10px;
   padding-left: 10px;
   box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.1) 0 0 0 1px;
@@ -69,7 +69,7 @@ body {
 
 .login-container .submit-btn {
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.1) 0 0 0 1px;
   border: none;
   border-radius: 10px;
@@ -78,13 +78,15 @@ body {
 }
 
 .display-error {
-  width: 100%;
+  opacity: 0;
+  width: 98%;
+  background-color: #f2b6b6;
+  color: #ce5d5d;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  color: #ff7070;
-  opacity: 0;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .display-error.active {
@@ -171,10 +173,10 @@ body {
 }
 
 /* UserDashboard */
-.user-dashboard {
+.user-profile {
   position: relative;
   width: 100%;
-  height: 200vh;
+  /* height: 200vh; */
   z-index: 2;
   display: flex;
   background-color: #f4f4f4;
@@ -392,6 +394,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-size: 18px;
 }
 
 .account-info-container {
@@ -546,6 +549,7 @@ body {
   border-radius: 10px;
   background-color: white;
   padding: 15px;
+  margin-bottom: 30px;
 }
 
 .calorie-settings h3 {
@@ -569,6 +573,20 @@ body {
   justify-content: end;
   padding-right: 20px;
   padding-bottom: 10px;
+}
+
+.cancel-changes-btn {
+  width: 130px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #34b335;
+  border: none;
+}
+
+.cancel-changes-btn:hover {
+  border-radius: 5px;
+  background-color: #f4f4f4;
 }
 
 .save-changes-btn {
@@ -643,4 +661,135 @@ input[type="radio"]:checked + .custom-radio::after {
 .radio-style + .custom-radio {
   display: inline-block;
   vertical-align: middle;
+}
+
+/* modals */
+.update-password-modal-container {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.update-password-modal-container h2 {
+  text-align: center;
+}
+
+.update-password-modal-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label-container {
+  width: 100%;
+}
+
+.label-container label {
+  display: block;
+  margin-bottom: 5px;
+  margin-left: 17px;
+}
+.update-password-modal-container form input {
+  width: 90%;
+  padding: 10px;
+  height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 3px;
+}
+
+.save-password-changes-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.save-password-changes-container .cancel-changes-btn,
+.save-password-changes-container .save-changes-btn {
+  width: calc(50% - 10px);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-password-changes-container .cancel-changes-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.save-password-changes-container .cancel-changes-btn:hover {
+  background-color: #b3b3b3;
+}
+
+.save-password-changes-container .save-changes-btn {
+  background-color: #34b335;
+  color: white;
+}
+
+.save-password-changes-container .save-changes-btn:hover {
+  background-color: #2e992d;
+}
+
+.success-modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+.success-modal-overlay.active {
+  opacity: 1;
+}
+
+.success-modal-container {
+  width: 250px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  border-radius: 10px;
+  text-align: center;
+  animation: scaleUp 0.3s ease-out forwards; /* Add scale-up animation */
+}
+
+.success-modal-container h2 {
+  margin-bottom: 10px;
+  color: black; /* Success color */
+}
+
+.success-modal-container p {
+  margin-bottom: 20px;
+  color: #555; /* Neutral text color */
+}
+
+.close-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #34b335; /* Success color */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #2e992d; /* Darker success color for hover effect */
 }

@@ -1,17 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [open, setOpen] = useState(true);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState(() => {
+    return localStorage.getItem("selected") || "Dashboard";
+  });
+
   const handleHamburger = (status) => {
     setOpen(status);
   };
 
   const handleSelected = (type) => {
     setSelected(type);
+    localStorage.setItem("selected", type);
   };
+
+  useEffect(() => {
+    localStorage.setItem("selected", selected);
+  }, [selected]);
 
   return (
     <div className={`sidebar ${open ? "active" : null}`}>
@@ -68,8 +76,8 @@ const SideBar = () => {
         </Link>
         <Link
           to="exercise"
-          className={`sidebar-btn ${selected === "Foods" ? "selected" : ""}`}
-          onClick={() => handleSelected("Foods")}
+          className={`sidebar-btn ${selected === "Exercise" ? "selected" : ""}`}
+          onClick={() => handleSelected("Exercise")}
         >
           <div className="sidebar-btn-content">
             <svg
@@ -82,8 +90,28 @@ const SideBar = () => {
                 d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"
               />
             </svg>
-            <span className="nav-item">exercise</span>
-            <span className="tooltip">exercise</span>
+            <span className="nav-item">Exercise</span>
+            <span className="tooltip">Exercise</span>
+          </div>
+        </Link>
+        <Link
+          to="weight"
+          className={`sidebar-btn ${selected === "Weight" ? "selected" : ""}`}
+          onClick={() => handleSelected("Weight")}
+        >
+          <div className="sidebar-btn-content">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              height="16px"
+            >
+              <path
+                fill="currentColor"
+                d="M128 176a128 128 0 1 1 256 0 128 128 0 1 1 -256 0zM391.8 64C359.5 24.9 310.7 0 256 0S152.5 24.9 120.2 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-56.2 0zM296 224c0-10.6-4.1-20.2-10.9-27.4l33.6-78.3c3.5-8.1-.3-17.5-8.4-21s-17.5 .3-21 8.4L255.7 184c-22 .1-39.7 18-39.7 40c0 22.1 17.9 40 40 40s40-17.9 40-40z"
+              />
+            </svg>
+            <span className="nav-item">Weight</span>
+            <span className="tooltip">Weight</span>
           </div>
         </Link>
         <Link

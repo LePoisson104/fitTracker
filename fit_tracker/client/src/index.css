@@ -666,7 +666,7 @@ input[type="radio"]:checked + .custom-radio::after {
 /* modals */
 .update-password-modal-container {
   position: absolute;
-  top: 25%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;

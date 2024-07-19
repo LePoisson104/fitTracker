@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import UpdateEmail from "../components/modals/UpdateEmail";
+import UpdatePassword from "../components/modals/UpdatePassword";
+
 const Layout = () => {
   return (
     <>
-      <UpdateEmail status="active" />
+      {/* <UpdatePassword status="active" /> */}
       <SideBar />
       <div className="main-content">
         <Outlet />

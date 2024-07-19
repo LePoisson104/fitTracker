@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage";
 import UserDashboard from "./pages/DashboardPage";
 import DiaryPage from "./pages/DiaryPage";
 import ExercisePage from "./pages/ExercisePage";
+import WeightPage from "./pages/WeightPage";
 import TrendsPage from "./pages/TrendsPage";
 import ProfilePage from "./pages/ProfilePage";
 import Layout from "./layouts/DashLayout";
@@ -20,6 +21,7 @@ function App() {
         <Route path="diary" element={<DiaryPage />} />
         <Route path="exercise" element={<ExercisePage />} />
         <Route path="trends" element={<TrendsPage />} />
+        <Route path="weight" element={<WeightPage />} />
         <Route path="settings" element={<ProfilePage />} />
       </Route>
       <Route path="login" element={<LoginPage />} />

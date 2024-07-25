@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../utils/db");
 
 const queryCreateNewUser = async (userId, email, hashed_password, name) => {
   try {
@@ -27,6 +27,25 @@ const queryGetAllUsers = async (email) => {
   try {
     const response = await new Promise((resolve, reject) => {
       const query = "SELECT user_id, email, name FROM users WHERE email = ?";
+      pool.query(query, [email], (err, results) => {
+        if (err) {
+          reject(new Error(err));
+        } else {
+          resolve(results);
+        }
+      });
+    });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const queryGetUsersCredentials = async (email) => {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      const query =
+        "SELECT email, hashed_password, name FROM users WHERE email = ?";
       pool.query(query, [email], (err, results) => {
         if (err) {
           reject(new Error(err));
@@ -82,4 +101,5 @@ module.exports = {
   queryGetAllUsers,
   queryUpdateUser,
   queryDeleteUser,
+  queryGetUsersCredentials,
 };

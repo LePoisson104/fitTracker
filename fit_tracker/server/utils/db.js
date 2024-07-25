@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+
 require("dotenv").config();
 
 const pool = mysql.createPool({
@@ -9,8 +10,10 @@ const pool = mysql.createPool({
 });
 
 pool.getConnection((err) => {
-  if (err) throw err;
-  console.log("database connected sucessfully!");
+  if (err) {
+    console.error("Could not connect to DB");
+  }
+  console.log("Database connected sucessfully!");
 });
 
 module.exports = pool;

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import validator from "validator";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [error, setError] = useState(null);
@@ -8,7 +10,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const BACKEND_URL = "http://localhost:8000";
+  const navigate = useNavigate();
 
   const viewLogin = (status) => {
     setIsLogin(status);
@@ -28,27 +30,58 @@ const LoginPage = () => {
       (!isLogin && !name) ||
       (!isLogin && !confirmPassword)
     ) {
-      setError("All fields are required!");
-      return;
+      return setError("All fields are required!");
     }
 
     if (!isLogin && password !== confirmPassword) {
-      setError("Passwords does not match!");
-      return;
+      return setError("Passwords does not match!");
     }
+
+    if (!isLogin && !validator.isEmail(email)) {
+      return setError("Invalid Email");
+    }
+
     const payload = { email, password };
 
     if (!isLogin) payload.name = name;
 
-    const response = await fetch(`${BACKEND_URL}/${endpoint}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = await response.json();
-    console.log(data);
-    if (data === "error") {
-      setError(`${email} already exist`);
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_URL}/auth/${endpoint}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.status === 400) {
+        setError(`${email} already exists`);
+        return;
+      }
+
+      if (response.status === 401) {
+        return setError(data.message);
+      }
+
+      if (response.status === 200) {
+        alert(data.message);
+
+        if (endpoint === "signin") {
+          const accessToken = data.accessToken;
+          // Perform any state updates or context updates
+          // Example: update your context to set the authentication state
+          // authContext.login(accessToken);
+          navigate("/"); // Redirect to the dashboard
+        } else if (endpoint === "signup") {
+          viewLogin(true);
+        }
+      }
+    } catch (error) {
+      console.error("Error during login/signup:", error);
+      setError("An error occurred. Please try again.");
     }
   };
 

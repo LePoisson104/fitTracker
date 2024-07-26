@@ -6,7 +6,7 @@ const NotFoundPage = () => {
     <div className="not-found-container">
       <h1 className="not-found-title">404</h1>
       <p className="not-found-message">Page Not Found</p>
-      <Link to="/" className="not-found-home-link">
+      <Link to="/login" className="not-found-home-link">
         Go Back Home
       </Link>
     </div>

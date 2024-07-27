@@ -173,7 +173,16 @@ const Profile = () => {
           </div>
         </form>
         <form className="calorie-settings">
-          <h3>Calories Target</h3>
+          <h3>Goals</h3>
+          <div className="personal-info">
+            <div className="info-label">
+              <label>Weight</label>
+            </div>
+            <div className="calories-container">
+              <input type="number" placeholder="170" />
+              <span>lbs</span>
+            </div>
+          </div>
           <div className="personal-info">
             <div className="info-label">
               <label>Calories</label>
